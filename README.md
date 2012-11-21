@@ -1,3 +1,15 @@
+# Ruby on Rails Tutorial: sample application
+
+Listing 3.2
+
+This is the sample application for
+[*Ruby on Rails Tutorial: Learn Rails by Example*](http://railstutorial.org/)
+by [Michael Hartl](http://michaelhartl.com/).
+
+
+Rails auto-generated README.rdoc follows below.
+=========================
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
