@@ -11,7 +11,7 @@ describe "Static pages" do
     end
     
     # Listing 3.17 - goes here?
-    it "should have the right title" do
+    it "should have the right title 'Home'" do
       visit '/static_pages/home'
       page.should have_selector('title', :text => "Ruby on Rails Tutorial Sample App | Home")
     end
