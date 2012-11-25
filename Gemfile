@@ -20,6 +20,10 @@ group :development, :test do
   # no different from ZenTest?
   #gem 'autotest'
   #gem 'autotest-rails'
+  
+  # Listing 3.35
+  gem 'guard-spork', '1.2.0'
+  gem 'spork', '0.9.2'
 end
 
 
