@@ -10,11 +10,16 @@ gem 'rails', '3.2.9'
 group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
-  gem 'guard-rspec', '1.2.1' # Listing 3.33
+  gem 'guard-rspec', '1.2.1' # Listing 3.33 - this doesn't work with VMware shared folders...
   
-  # CS169.1x alternative to guard - which doesn't work with VMware shared folders?
+  # CS169.1x autotest
   # ugh this doesn't watch view files? ignore for now...? http://zentest.rubyforge.org/ZenTest/
   gem 'ZenTest'
+  
+  # http://stackoverflow.com/questions/3622193/autotest-on-ubuntu-does-nothing
+  # no different from ZenTest?
+  #gem 'autotest'
+  #gem 'autotest-rails'
 end
 
 
