@@ -56,5 +56,8 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
   end
 end
 
-
+# default notifications annoying on Ubuntu 12.04 LTS
+# http://rubydoc.info/github/guard/guard/master/Guard/Notifier/Libnotify
+# no effect??
+#notification :libnotify, :timeout => 1, :transient => true, :append => false
 
