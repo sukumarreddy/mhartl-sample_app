@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Static pages" do
 
   # Listing 3.30
-  let(:base_title) { "Ruby on Rails Sample App" }
+  let(:base_title) { "Ruby on Rails Tutorial Sample App" }
   
   # Listing 3.9
   describe "Home page" do
