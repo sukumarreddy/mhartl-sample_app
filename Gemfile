@@ -11,6 +11,10 @@ group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1' # Listing 3.33
+  
+  # CS169.1x alternative to guard - which doesn't work with VMware shared folders?
+  # ugh this doesn't watch view files? ignore for now...? http://zentest.rubyforge.org/ZenTest/
+  gem 'ZenTest'
 end
 
 
