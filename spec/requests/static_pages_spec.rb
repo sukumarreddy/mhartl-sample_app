@@ -8,6 +8,13 @@ describe "Static pages" do
   # Listing 5.27
   subject { page }
 
+  # Listing 5.35 (Exercise 5.1)
+  shared_examples_for "all static pages" do
+    it { should have_selector('h1', text: heading) }
+    it { should have_selector('title', text: full_title(page_title)) }
+  end
+
+
   # Listing 3.9
   describe "Home page" do
 
@@ -33,9 +40,14 @@ describe "Static pages" do
     
     # Listing 5.27
     before { visit root_path }
-    it { should have_selector('h1', :text => 'Sample App') }
-    it { should have_selector('title', :text => full_title('')) }
+    #it { should have_selector('h1', :text => 'Sample App') }
+    #it { should have_selector('title', :text => full_title('')) }
     it { should_not have_selector('title', :text => '| Home') }
+
+    # Listing 5.35
+    let(:heading) { 'Sample App' }
+    let(:page_title) { '' }
+    it_should_behave_like "all static pages"
 
   end
   
@@ -57,8 +69,14 @@ describe "Static pages" do
     
     # Listing 5.27
     before { visit help_path }
-    it { should have_selector('h1', text: 'Help') }
-    it { should have_selector('title', text: full_title('Help')) }    
+    #it { should have_selector('h1', text: 'Help') }
+    #it { should have_selector('title', text: full_title('Help')) }    
+
+    # Exercise 5.1
+    let(:heading) { 'Help' }
+    let(:page_title) { 'Help' }
+    it_should_behave_like "all static pages"
+
   end
 
   # Listing 3.13
@@ -78,8 +96,13 @@ describe "Static pages" do
     
     # Listing 5.27
     before { visit about_path }
-    it { should have_selector('h1', text: 'About') }
-    it { should have_selector('title', text: full_title('About')) }  
+    #it { should have_selector('h1', text: 'About') }
+    #it { should have_selector('title', text: full_title('About')) }  
+
+    # Exercise 5.1
+    let(:heading) { 'About' }
+    let(:page_title) { 'About' }
+    it_should_behave_like "all static pages"
   end
 
   # Listing 5.16
@@ -96,8 +119,13 @@ describe "Static pages" do
 
     # Listing 5.27
     before { visit contact_path }
-    it { should have_selector('h1', text: 'Contact') }
-    it { should have_selector('title', text: full_title('Contact')) } 
+    #it { should have_selector('h1', text: 'Contact') }
+    #it { should have_selector('title', text: full_title('Contact')) } 
+
+    # Exercise 5.1
+    let(:heading) { 'Contact' }
+    let(:page_title) { 'Contact' }
+    it_should_behave_like "all static pages"
   end
   
   
