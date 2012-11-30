@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
   def help
   end
   
-  # Listing 3.15
-  def about
-  end
+  def about ; end # Listing 3.15
+
+  def contact ; end # Listing 5.18
 end
