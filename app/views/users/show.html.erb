@@ -1,5 +1,8 @@
 <%# Listing 7.10: title and h1 %>
 <% provide(:title, @user.name) %>
-<h1><%= @user.name %></h1>
+<h1>
+	<%= gravatar_for @user %> <%# Listing 7.12 %>
+	<%= @user.name %>
+</h1>
 
 Listing 7.4: <%= @user.name %>, <%= @user.email %>
