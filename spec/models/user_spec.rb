@@ -19,6 +19,7 @@ describe User do
   subject { @user }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:password_digest) } # Listing 6.25
 
   # Listing 6.11
   it { should be_valid }
