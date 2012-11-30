@@ -57,6 +57,9 @@ group :test do
   # Listing 3.33 Test gems on Linux
   gem 'rb-inotify', '0.8.8'
   gem 'libnotify', '0.5.9'
+
+  # Listing 7.7
+  gem 'factory_girl_rails', '4.1.0'
 end
 
 group :production do
