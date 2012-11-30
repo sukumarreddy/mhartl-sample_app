@@ -18,8 +18,10 @@ class User < ActiveRecord::Base
 
   # Listing 6.13
   # Listing 6.17 add regex validation
+  # Listing 6.19 add uniqueness
+  # Listing 6.21 case-insensitivity
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
 
 
