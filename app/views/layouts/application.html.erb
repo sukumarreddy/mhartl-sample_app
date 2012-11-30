@@ -5,30 +5,12 @@
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <%= render 'layouts/shim' %> <%# Listing 5.8 - introducing partials%>    
   </head>
-  <body>
-  
-    <%# Listing 5.1 %>
-    <header class="navbar navbar-fixed-top navbar-inverse"> <%# classes used by Bootstrap %> <%# inverse is cosmetic - see after Figure 5.4 %>
-      <div class="navbar-inner">
-        <div class="container">
-          <%= link_to "sample app", '#', id: "logo" %> <%# Note Ruby 1.9-style hash %>
-          <nav>
-            <ul class="nav pull-right">
-              <li><%= link_to "Home",    '#' %></li> <%# Listing 5.1: stub URI for now %>
-              <li><%= link_to "Help",    '#' %></li>
-              <li><%= link_to "Sign in", '#' %></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+  <body>  
+    <%= render 'layouts/header' %>
     <div class="container">  
       <%= yield %>
-    </div>
-  
+    </div>  
   </body>
 </html>
