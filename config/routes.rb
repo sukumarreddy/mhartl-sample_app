@@ -1,5 +1,5 @@
 MhartlSampleApp::Application.routes.draw do
-  get "users/new"
+  get "users/new" # Sectin 5.4.2 'rails generate' - not RESTFUL...eliminate later. 
 
   #get "static_pages/home"
   #get "static_pages/help"
@@ -19,6 +19,9 @@ MhartlSampleApp::Application.routes.draw do
 
   # Listing 5.23 
   root to: 'static_pages#home'
+
+  # Listing 5.32
+  match '/signup', to: 'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
