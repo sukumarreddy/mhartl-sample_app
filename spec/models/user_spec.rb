@@ -15,11 +15,21 @@ require 'spec_helper'
 describe User do
 
   # Listing 6.8
-  before { @user = User.new(name: "Example User", email: "user@example.com") }
+  before do 
+    @user = User.new(name: "Example User", email: "user@example.com",
+      password: "foobar", password_confirmation: "foobar" # Listing 6.27 adds password
+    )
+  end
   subject { @user }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
-  it { should respond_to(:password_digest) } # Listing 6.25
+
+  # Listing 6.25
+  it { should respond_to(:password_digest) } 
+
+  # Listing 6.27
+  it { should respond_to :password }
+  it { should respond_to :password_confirmation }
 
   # Listing 6.11
   it { should be_valid }
@@ -82,5 +92,20 @@ describe User do
       @user.reload.email.should == mixed_case_email.downcase
     end
   end
+
+  # Listing 6.28
+  describe "when password is not present" do
+    before { @user.password = @user.password_confirmation = " " }
+    it { should_not be_valid }
+  end
+  describe "when password doesn't match confirmation" do
+    before { @user.password_confirmation = "mismatch" }
+    it { should_not be_valid }
+  end
+  describe "when password confirmation is nil" do # COULD happen at the console..
+    before { @user.password_confirmation = nil }
+    it { should_not be_valid }
+  end
+
 
 end
