@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
   # Listing 6.23
-  #before_save { |user| user.email = email.downcase }
+  before_save { |user| user.email = email.downcase }
 
 end
