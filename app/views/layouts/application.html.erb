@@ -12,6 +12,7 @@
     <div class="container">  
       <%= yield %>
       <%= render 'layouts/footer' %> <%# Listing 5.12 %>
+      <%= debug(params) if Rails.env.development? %> <%# Listing 7.1 %>
     </div>  
   </body>
 </html>
