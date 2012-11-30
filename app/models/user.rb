@@ -11,4 +11,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :name
+
+  # Listing 6.9 - temporarily commented out in Listings 6.10-11 for "reverse TDD" or something
+  validates :name, presence: true
 end
