@@ -11,6 +11,10 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :name
+  
+  # Listing 6.30 
+  attr_accessible :password, :password_confirmation
+  has_secure_password
 
   # Listing 6.9 - temporarily commented out in Listings 6.10-11 for "reverse TDD" or something
   # Listing 6.15 - add length validation
@@ -22,6 +26,10 @@ class User < ActiveRecord::Base
   # Listing 6.21 case-insensitivity
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+
+  # Listing 6.30
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :password_confirmation, presence: true
 
   # Listing 6.23
   before_save do |user| 

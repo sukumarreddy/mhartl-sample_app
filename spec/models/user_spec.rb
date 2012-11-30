@@ -118,7 +118,7 @@ describe User do
     let(:found_user) { User.find_by_email @user.email } # Box 6.3 describes "let" (local test vars)
 
     describe "with valid password" do
-      it { should == found_user.authenticate @user.password }
+      it { should == found_user.authenticate(@user.password) } # hmm, parentheses required for authenticate()
     end
 
     describe "with invalid password" do
