@@ -14,4 +14,7 @@ class User < ActiveRecord::Base
 
   # Listing 6.9 - temporarily commented out in Listings 6.10-11 for "reverse TDD" or something
   validates :name, presence: true
+
+  # Listing 6.13
+  validates :email, presence: true
 end

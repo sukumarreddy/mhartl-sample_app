@@ -27,4 +27,11 @@ describe User do
     it { should_not be_valid }
   end
 
+  # Listing 6.12
+  describe "when email is not present" do
+    before { @user.email = " " }
+    it { should_not be_valid }
+  end
+
+
 end
