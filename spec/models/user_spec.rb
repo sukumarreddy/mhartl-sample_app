@@ -31,6 +31,11 @@ describe User do
   it { should respond_to :password }
   it { should respond_to :password_confirmation }
 
+  # Listing 6.29
+  it { should respond_to :authenticate }
+
+
+
   # Listing 6.11
   it { should be_valid }
   describe "when name is not present" do
@@ -106,6 +111,28 @@ describe User do
     before { @user.password_confirmation = nil }
     it { should_not be_valid }
   end
+
+  # Listing 6.29
+  describe "return value of authenticate method" do    
+    before { @user.save } # save to db for find_by_email
+    let(:found_user) { User.find_by_email @user.email } # Box 6.3 describes "let" (local test vars)
+
+    describe "with valid password" do
+      it { should == found_user.authenticate @user.password }
+    end
+
+    describe "with invalid password" do
+      let(:user_for_invalid_password) { found_user.authenticate "invalid" } # doesn't hit db again ("memoized" from previous test)
+
+      it { should_not == user_for_invalid_password }
+      specify { user_for_invalid_password.should be_false } # it == specify (readability)
+    end
+  end
+  describe "with a password that's too short" do
+    before { @user.password = @user.password_confirmation = "a" * 5 }
+    it { should be_invalid }
+  end
+
 
 
 end
