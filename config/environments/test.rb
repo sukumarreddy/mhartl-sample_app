@@ -34,4 +34,10 @@ MhartlSampleApp::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Listing 7.11 - Speed up tests by lowering BCrypt's cost function.
+  require 'bcrypt'
+  silence_warnings do
+    BCrypt::Engine::DEFAULT_COST = BCrypt::Engine::MIN_COST
+  end
 end
