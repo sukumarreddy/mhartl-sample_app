@@ -40,7 +40,26 @@ describe "UserPages" do
       it "should not create a user" do # signup information is blank unless specified otherwise
         expect { click_button submit }.not_to change(User, :count) # invalid user should not get committed to db
       end                                                          # {} syntax for change() invocation
-    end                                                            # User.count computed before and after {}
+                                                                   # User.count computed before and after {}
+      # Listing 7.31 + Exercise 7.2
+      describe "after submission" do
+        before { click_button submit }
+  
+        it { should have_selector('title', text: 'Sign up') }
+        it { should have_content('error') }
+
+        # my additions
+        # it { should have_content('Password digest can\'t be blank') } # Removed in Exercise 7.3!
+        it { should have_content('Name can\'t be blank') }
+        it { should have_content('Email can\'t be blank') }
+        it { should have_content('Email is invalid') }
+        it { should have_content('Password can\'t be blank') }
+        it { should have_content('Password is too short (minimum is 6 characters)') }
+        it { should have_content('Password confirmation can\'t be blank') }
+
+      end
+
+    end                                                            
 
     describe "with valid information" do
       before do
@@ -54,6 +73,7 @@ describe "UserPages" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
     end
+
   end # signup
 
 end # UserPages

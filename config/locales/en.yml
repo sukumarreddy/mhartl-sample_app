@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+
+  # Listing 7.30 + Exercise 7.3
+  activerecord: 
+    attributes:
+      user:
+        password_digest: "Password"
