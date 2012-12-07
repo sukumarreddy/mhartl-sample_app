@@ -28,6 +28,12 @@ MhartlSampleApp::Application.routes.draw do
   # Listing 7.3
   resources :users
 
+  # Listing 8.2
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signup', to: 'users#new'
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete # invoked with HTTP delete request
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
