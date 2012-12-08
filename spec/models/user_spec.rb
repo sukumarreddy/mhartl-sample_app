@@ -137,6 +137,11 @@ describe User do
     it { should be_invalid }
   end
 
+  # Listing 8.17
+  describe "remember token" do
+    before { @user.save } 
+    its(:remember_token) { should_not be_blank } # introducing "its"!
+  end
 
 
 end

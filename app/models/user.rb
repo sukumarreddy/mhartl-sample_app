@@ -37,4 +37,15 @@ class User < ActiveRecord::Base
   	self.email.downcase! # Listing 6.32 alternative (Exercise 6.2)
   end
 
+  # Listing 8.18
+  before_save { |user| user.email = email.downcase }
+  before_save :create_remember_token
+
+  private
+
+  # Listing 8.18
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
+
 end
