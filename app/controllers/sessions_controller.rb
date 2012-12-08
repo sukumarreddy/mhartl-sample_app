@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password]) # uh, why does this need parens? meh
       # Sign the user in and redirect to user's show page
       # Listing 8.13 (not yet working - sign_in() doesn't exist yet!)
-      sign_in userredirect_to user
+      sign_in user
+      redirect_to user
     else
 
       # Listing 8.12 magical flash.now instead of flash
