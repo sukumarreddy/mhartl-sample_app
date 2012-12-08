@@ -11,6 +11,12 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  # Listing 8.30 - by symmetry with sign_in
+  def sign_out
+    self.current_user = nil
+    cookies.delete :remember_token
+  end
+
   # Listing 8.20 current_user wasn't even defined. did that really merit a section break??
   def current_user=(user)
     @current_user = user
