@@ -6,6 +6,11 @@ module SessionsHelper
     self.current_user = user
   end
 
+  # Listing 8.23 - in preparation for view
+  def signed_in?
+    !current_user.nil?
+  end
+
   # Listing 8.20 current_user wasn't even defined. did that really merit a section break??
   def current_user=(user)
     @current_user = user
