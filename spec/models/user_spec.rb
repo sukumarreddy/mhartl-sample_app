@@ -34,6 +34,10 @@ describe User do
   # Listing 6.29
   it { should respond_to :authenticate }
 
+  # Listing 8.15
+  it { should respond_to :remember_token }
+  it { should respond_to :authenticate }
+
 
 
   # Listing 6.11
