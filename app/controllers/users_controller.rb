@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new params[:user]
   	if @user.save
+      sign_in @user # Listing 8.27
   	  # Handle a successful save
       flash[:success] = "Welcome to the Sample App!" # Listing 7.27
   	  redirect_to @user # Listing 7.25 - see also Exercises...

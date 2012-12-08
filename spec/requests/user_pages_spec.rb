@@ -80,6 +80,10 @@ describe "UserPages" do
 
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+
+        # Listing 8.26 - polish: should be signed in after signing up
+        it { should have_link 'Sign out' }
+
       end
     end
 
