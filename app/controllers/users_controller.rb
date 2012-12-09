@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   before_filter :admin_user, only: :destroy
 
   def new
+    redirect_to root_path if signed_in? # Exercise 9.6 (meh didn't bother writing a test)
   	@user = User.new # Listing 7.18
   end
 
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
 
   # Listing 7.21
   def create
+    redirect_to root_path if signed_in? # Exercise 9.6
   	@user = User.new params[:user]
   	if @user.save
       sign_in @user # Listing 8.27
