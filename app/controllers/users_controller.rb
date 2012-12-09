@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   # Listing 9.15
   before_filter :correct_user, only: [:edit, :update]
 
+  # Listing 9.48
+  before_filter :admin_user, only: :destroy
+
   def new
   	@user = User.new # Listing 7.18
   end
@@ -78,6 +81,11 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find params[:id]
     redirect_to(root_path) unless current_user?(@user)
+  end
+
+  # Listing 9.48
+  def admin_user
+    redirect_to root_path unless current_user.admin?
   end
 
 end
