@@ -37,9 +37,11 @@ describe "AuthenticationPages" do
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        fill_in "Email", with: user.email
-        fill_in "Password", with: user.password
-        click_button "Sign in"
+        # Exercise 8.2 - giving it a whirl
+        #fill_in "Email", with: user.email
+        #fill_in "Password", with: user.password
+        #click_button "Sign in"
+        valid_signin(user)
       end
 
       it { should have_selector 'title', text: user.name }
