@@ -9,5 +9,10 @@ FactoryGirl.define do
     
     password "foobar"
     password_confirmation "foobar"
+
+    # Listing 9.43 - requires restarting "bundle exec guard"?
+    factory :admin do
+      admin true
+    end
   end
 end

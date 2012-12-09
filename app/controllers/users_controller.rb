@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # Listing 9.12
   # Listing 9.22 - added :index
-  before_filter :signed_in_user, only: [:edit, :update, :index]
+  # Listing 9.46 - added :delete. CRUD complete!
+  before_filter :signed_in_user, only: [:edit, :update, :index, :delete]
 
   # Listing 9.15
   before_filter :correct_user, only: [:edit, :update]
@@ -56,6 +57,14 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page]) # will_paginate auto-generates both paginate() and params[:page]
   end
 
+  # Listing 9.46
+  def destroy
+    User.find(params[:id]).destroy # note method chaining
+    flash[:success] = "User destroyed."
+    redirect_to users_url
+  end
+
+
   # Listing 9.12
   private
   def signed_in_user    
@@ -70,6 +79,5 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     redirect_to(root_path) unless current_user?(@user)
   end
-
 
 end

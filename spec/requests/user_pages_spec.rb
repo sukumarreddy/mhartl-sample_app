@@ -170,6 +170,30 @@ describe "UserPages" do
       end
     end
 
+    # Listing 9.44
+    describe "delete links" do
+      it "cannot delete before logging in as admin" do 
+        should_not have_link 'delete' 
+      end
+
+      describe "as an admin user" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit users_path
+        end
+
+        it { should have_link('delete', href: user_path(User.first)) }
+        it "should be able to delete another user" do
+          expect { click_link('delete') }.to change(User, :count).by(-1)
+        end
+
+        it "should not be able to delete self" do
+          should_not have_link('delete', href: user_path(admin))
+        end
+      end # "as an admin user"
+    end # "delete links"
+
   end # "index"
 
 end # UserPages
