@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
   
   # Listing 6.30 
   attr_accessible :password, :password_confirmation
+
+  # Exercise 9.1 testing - uncommenting this should cause new test to fail
+  #attr_accessible :admin
+
+  # Listing 6.30
   has_secure_password
 
   # Listing 6.9 - temporarily commented out in Listings 6.10-11 for "reverse TDD" or something

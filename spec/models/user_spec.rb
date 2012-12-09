@@ -158,5 +158,15 @@ describe User do
     it { should be_admin } # RSpec convention implies existence of User#admin?()
   end
 
+  # Exercise 9.1 - following Listing 10.8
+  describe "Exercise 9.1" do
+    it "should not allow access to admin" do
+      expect do
+        User.new(admin: true)
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
 
-end
+
+
+end # User
