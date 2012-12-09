@@ -60,6 +60,10 @@ group :test do
 
   # Listing 7.7
   gem 'factory_girl_rails', '4.1.0'
+
+  # Listing 8.31
+  gem 'cucumber-rails', '1.2.1', :require => false
+  gem 'database_cleaner', '0.7.0'
 end
 
 group :production do
