@@ -48,8 +48,11 @@ class UsersController < ApplicationController
 
   # Listing 9.12
   private
-  def signed_in_user
-    redirect_to signin_url, notice: "Please sign in." unless signed_in? # shortcut for setting flash[:notice]
+  def signed_in_user    
+    unless signed_in?
+      store_location # Listing 9.19 - stay on same page after signing in ("friendly forwarding")
+      redirect_to signin_url, notice: "Please sign in." # shortcut for setting flash[:notice]
+    end
   end
 
   # Listing 9.15

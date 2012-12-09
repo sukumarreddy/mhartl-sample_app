@@ -32,4 +32,14 @@ module SessionsHelper
     user == current_user
   end
 
+  # Listing 9.18
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to) # Rails' cookie API (auto-expires on browser close)
+  end
+
+  def store_location
+    session[:return_to] = request.url # access raw HTTP request object
+  end
+
 end

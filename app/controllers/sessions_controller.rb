@@ -11,7 +11,10 @@ class SessionsController < ApplicationController
       # Sign the user in and redirect to user's show page
       # Listing 8.13 (not yet working - sign_in() doesn't exist yet!)
       sign_in user
-      redirect_to user
+
+      # Listing 9.20 friendly forwarding (the last piece)
+      #redirect_to user
+      redirect_back_or user
     else
 
       # Listing 8.12 magical flash.now instead of flash
