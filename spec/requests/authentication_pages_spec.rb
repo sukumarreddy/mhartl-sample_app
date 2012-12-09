@@ -107,7 +107,7 @@ describe "AuthenticationPages" do
             page.should have_selector('title', text: 'Edit user')
           end
 
-          # Listing 9.52 (Exercise 9.8)
+          # Listing 9.52 (Exercise 9.8) - no double-render
           describe "when signing in again" do
             before do
               delete signout_path
@@ -150,7 +150,7 @@ describe "AuthenticationPages" do
       end
     end # "as wrong user"
 
-    # Listing 9.47"
+    # Listing 9.47
     describe "as non-admin user" do
       let(:user) { FactoryGirl.create(:user) }
       let(:non_admin) { FactoryGirl.create(:user) }
@@ -161,6 +161,30 @@ describe "AuthenticationPages" do
         before { delete user_path(user) }
         specify { response.should redirect_to(root_path) }        
       end
+    end
+
+    # Exercise 9.9 + comments below Listing 9.46
+    describe "admin user should not be able to DELETE yourself" do
+      let(:admin) { FactoryGirl.create(:admin) }        
+      let(:user) { FactoryGirl.create(:user) }
+      before do 
+        sign_in admin # cf. user_pages_spec / Listing 9.44
+      end
+
+      describe "deleting other users should be fine" do
+        before { delete user_path(user) }
+        specify { response.should redirect_to(users_path) }
+
+        # ugh, could not get this to work, which WOULD have been better...
+        #specify { page.should have_content "User destroyed" }
+      end
+
+      describe "deleting yourself should not work" do
+        before { delete user_path(admin) }
+        specify { response.should_not redirect_to users_path }
+      end
+      
+      
     end
 
   end # "authorization"

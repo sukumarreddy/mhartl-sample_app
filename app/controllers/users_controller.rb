@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # Listing 9.12
   # Listing 9.22 - added :index
   # Listing 9.46 - added :delete. CRUD complete!
-  before_filter :signed_in_user, only: [:edit, :update, :index, :delete]
+  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy]
 
   # Listing 9.15
   before_filter :correct_user, only: [:edit, :update]
@@ -64,7 +64,16 @@ class UsersController < ApplicationController
 
   # Listing 9.46
   def destroy
-    User.find(params[:id]).destroy # note method chaining
+    
+    # Exercise 9.9
+    # User.find(params[:id]).destroy # note method chaining
+    @user = User.find(params[:id])
+    if current_user?(@user)
+      flash[:error] = "Don't kill yourself you stupid admin"
+      redirect_to root_url and return
+    end
+    @user.destroy    
+    
     flash[:success] = "User destroyed."
     redirect_to users_url
   end
