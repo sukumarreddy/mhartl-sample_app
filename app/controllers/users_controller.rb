@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   # Listing 9.12
   before_filter :signed_in_user, only: [:edit, :update]
 
+  # Listing 9.15
+  before_filter :correct_user, only: [:edit, :update]
+
   def new
   	@user = User.new # Listing 7.18
   end
@@ -26,12 +29,12 @@ class UsersController < ApplicationController
 
   # Listing 9.2
   def edit
-    @user = User.find params[:id]
+    #@user = User.find params[:id] # made redundant by before_filter correct_user
   end
 
   # Listing 9.8
   def update
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id]) # made redundant by before_filter correct_user
     if @user.update_attributes(params[:user])
       # Handle a successful update.
       # Listing 9.10
@@ -47,6 +50,12 @@ class UsersController < ApplicationController
   private
   def signed_in_user
     redirect_to signin_url, notice: "Please sign in." unless signed_in? # shortcut for setting flash[:notice]
+  end
+
+  # Listing 9.15
+  def correct_user
+    @user = User.find params[:id]
+    redirect_to(root_path) unless current_user?(@user)
   end
 
 
