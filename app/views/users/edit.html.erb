@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
+    <%= form_for(@user) do |f| %> <%# Rails automagically checks @user.new_record? and chooses POST or PUT accordingly %>
       <%= render 'shared/error_messages' %> <%# reused from Section 7.3.2 %>
 
       <%= f.label :name %>

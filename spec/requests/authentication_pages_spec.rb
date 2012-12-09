@@ -41,13 +41,19 @@ describe "AuthenticationPages" do
         #fill_in "Email", with: user.email
         #fill_in "Password", with: user.password
         #click_button "Sign in"
-        valid_signin(user)
+        #valid_signin(user) # overridden in Listings 9.5-9.6
+
+        # Listing 9.5
+        sign_in user
       end
 
       it { should have_selector 'title', text: user.name }
       it { should have_link 'Profile', href: user_path(user) }
       it { should have_link 'Sign out', href: signout_path }
       it { should_not have_link 'Sign in', href: signin_path }
+
+      # Listing 9.5
+      it { should have_link 'Settings', href: edit_user_path(user) }
 
       # Listing 8.28
       describe "followed by signout" do
