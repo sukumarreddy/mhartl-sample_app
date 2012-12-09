@@ -55,6 +55,9 @@ describe "AuthenticationPages" do
       # Listing 9.5
       it { should have_link 'Settings', href: edit_user_path(user) }
 
+      # Listing 9.27 
+      it { should have_link 'Users', href: users_path }
+
       # Listing 8.28
       describe "followed by signout" do
         before { click_link "Sign out" }
