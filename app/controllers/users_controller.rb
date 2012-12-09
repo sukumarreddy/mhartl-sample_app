@@ -21,4 +21,9 @@ class UsersController < ApplicationController
   	end
   end
 
+  # Listing 9.2
+  def edit
+    @user = User.find params[:id]
+  end
+
 end
