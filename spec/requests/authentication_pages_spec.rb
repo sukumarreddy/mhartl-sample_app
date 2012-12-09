@@ -80,6 +80,13 @@ describe "AuthenticationPages" do
           before { put user_path(user) } # n.b. direct HTTP request
           specify { response.should redirect_to(signin_path) } # direct request yields low-level "response" object
         end
+
+        # Listing 9.21
+        describe "visiting the user index" do
+          before { visit users_path }
+          it { should have_selector('title', text: 'Sign in') }
+        end
+
       end
 
       # Listing 9.17 "friendly forwarding"

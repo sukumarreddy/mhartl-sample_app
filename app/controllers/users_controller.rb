@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # Listing 9.12
-  before_filter :signed_in_user, only: [:edit, :update]
+  # Listing 9.22 - added :index
+  before_filter :signed_in_user, only: [:edit, :update, :index]
 
   # Listing 9.15
   before_filter :correct_user, only: [:edit, :update]
@@ -44,6 +45,10 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  # Listing 9.22 - empty stub
+  def index
   end
 
   # Listing 9.12
