@@ -109,6 +109,12 @@ describe "AuthenticationPages" do
         end
       end
 
+      # Exercise 9.3
+      describe "non-signed-in users should not have user profile or settings" do
+        it { should_not have_link 'Profile', href: user_path(user) }
+        it { should_not have_link 'Settings', href: edit_user_path(user) }
+      end
+
     end # "for non-signed-in users"
 
     # Listing 9.14
