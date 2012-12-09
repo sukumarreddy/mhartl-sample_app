@@ -10,7 +10,7 @@ namespace :db do
                  email: "example@railstutorial.org",
                  password: "foobar",
                  password_confirmation: "foobar")
-    admin.toggle!(:admin) # Listing 9.41
+    admin.toggle!(:admin) # Listing 9.41; not attr_accessible, so can't be assigned by mass-assignment.
 
     99.times do |n|
       name  = Faker::Name.name
