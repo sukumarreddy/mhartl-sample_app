@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  # Listing 9.12
+  before_filter :signed_in_user, only: [:edit, :update]
+
   def new
   	@user = User.new # Listing 7.18
   end
@@ -39,5 +42,12 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
+  # Listing 9.12
+  private
+  def signed_in_user
+    redirect_to signin_url, notice: "Please sign in." unless signed_in? # shortcut for setting flash[:notice]
+  end
+
 
 end
