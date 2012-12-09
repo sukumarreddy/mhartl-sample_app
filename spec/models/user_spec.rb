@@ -36,12 +36,18 @@ describe User do
 
   # Listing 8.15
   it { should respond_to :remember_token }
-  it { should respond_to :authenticate }
+  #it { should respond_to :authenticate } # oops, redundant
 
-
+  # Listing 9.39
+  it { should respond_to :admin }
 
   # Listing 6.11
   it { should be_valid }
+
+  # Listing 9.39
+  it { should_not be_admin }
+
+  # Listing 6.11
   describe "when name is not present" do
     before { @user.name = " " }
     it { should_not be_valid }
@@ -141,6 +147,15 @@ describe User do
   describe "remember token" do
     before { @user.save } 
     its(:remember_token) { should_not be_blank } # introducing "its"!
+  end
+
+  # Listing 9.39
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle! :admin # note toggle!() method
+    end
+    it { should be_admin } # RSpec convention implies existence of User#admin?()
   end
 
 
