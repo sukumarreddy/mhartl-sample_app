@@ -49,8 +49,11 @@ class UsersController < ApplicationController
 
   # Listing 9.22 - empty stub
   def index
-    # Listing 9.24
-    @users = User.all
+    # Listing 9.24 - changed in Listing 9.35
+    #@users = User.all
+
+    # Listing 9.35
+    @users = User.paginate(page: params[:page]) # will_paginate auto-generates both paginate() and params[:page]
   end
 
   # Listing 9.12
