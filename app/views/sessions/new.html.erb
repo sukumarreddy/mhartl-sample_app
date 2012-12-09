@@ -4,7 +4,8 @@
 
 <div class="row">
   <div class="span6 offset3">
-  	<%= form_for(:session, url: sessions_path) do |f| %>
+    <%# Exercise 8.1 says to refactor this to use form_tag, but I don't see the point/benefit... %>
+  	<%= form_for(:session, url: sessions_path) do |f| %> 
       
       <%= f.label :email %>
       <%= f.text_field :email %>
