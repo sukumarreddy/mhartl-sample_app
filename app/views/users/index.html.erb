@@ -6,16 +6,20 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      
-      <%# Listing 9.36 %>
-      <%#<%= gravatar_for user, size: 52 %>
-      <%#<%= link_to user.name, user %>
-      <%= render user %>
 
-    </li>
-  <% end %>
+  <%# Listing 9.38 - Rails automatically infers the type of "@users" %>
+  <%#<% @users.each do |user| %>
+  <%#  <li> %>
+  <%#    
+  <%#    <%# Listing 9.36 %>
+  <%#    <%#<%= gravatar_for user, size: 52 %>
+  <%#    <%#<%= link_to user.name, user %>
+  <%#    <%= render user %>
+  <%#
+  <%#  </li>
+  <%#<% end %>
+  <%= render @users %>
+
 </ul>
 
 <%= will_paginate %>
