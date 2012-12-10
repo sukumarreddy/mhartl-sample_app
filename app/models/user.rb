@@ -50,6 +50,15 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
+  # Listing 10.39
+  def feed
+    # This is preliminary. See "Following users" for the full implementation.
+    Micropost.where("user_id = ?", id) # ensure "id" is properly escaped before SQL query (prevent SQL injection)
+
+    # equivalently just use this line (laying foundation for Chapter 11 instead)
+    # microposts
+  end
+
   private
 
   # Listing 8.18

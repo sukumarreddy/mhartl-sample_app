@@ -44,6 +44,9 @@ describe User do
   # Listing 10.9
   it { should respond_to :microposts }
 
+  # Listing 10.38 - status feed
+  it { should respond_to :feed }
+
   # Listing 6.11
   it { should be_valid }
 
@@ -192,6 +195,17 @@ describe User do
       microposts.each do |micropost|
         Micropost.find_by_id(micropost.id).should be_nil # find_by_id() returns nil if record not found
       end
+    end
+
+    # Listing 10.38
+    describe "status" do
+      let(:unfollowed_post) do
+        FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+      end
+
+      its(:feed) { should include(newer_micropost) } # RSpec correctly interprets as array inclusion, not include keyword
+      its(:feed) { should include(older_micropost) }
+      its(:feed) { should_not include(unfollowed_post) }
     end
 
   end    
