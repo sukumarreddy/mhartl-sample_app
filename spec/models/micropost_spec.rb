@@ -18,7 +18,7 @@ describe Micropost do
   it { should respond_to(:content) }
   it { should respond_to(:user_id) }
 
-  # Listing 10.8u
+  # Listing 10.8
   it { should respond_to(:user) }
   its(:user) { should == user }
 

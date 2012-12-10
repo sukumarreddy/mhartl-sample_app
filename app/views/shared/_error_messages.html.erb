@@ -1,11 +1,12 @@
 <%# Listing 7.23 %>
-<% if @user.errors.any? %> <%# any?() ==  !empty?() %>
+<%# Listing 10.35 revised to use for microposts and users %>
+<% if object.errors.any? %> <%# any?() ==  !empty?() %>
   <div id="error_explanation">
     <div class="alert alert-error">
-      The form contains <%= pluralize(@user.errors.count, "error") %>. <%# Rails' ActionView::Helpers::TextHelpers %>
+      The form contains <%= pluralize(object.errors.count, "error") %>. <%# Rails' ActionView::Helpers::TextHelpers %>
     </div>
     <ul>
-    <% @user.errors.full_messages.each do |msg| %>
+    <% object.errors.full_messages.each do |msg| %>
       <li>* <%= msg %></li>
     <% end %>
     </ul>
