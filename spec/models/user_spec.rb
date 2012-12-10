@@ -170,6 +170,32 @@ describe User do
     end
   end
 
+  # Listing 10.13
+  describe "micropost associations" do
+    before { @user.save }
+    let!(:older_micropost) do # let!() forces immediate evaluation (instead of lazy)
+      FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago) # factories bypass attr_accessible and magic timestamps
+    end
+    let!(:newer_micropost) do
+      FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago) # note Rails' time helpers
+    end
+
+    it "should have the right microposts in the right order" do
+      @user.microposts.should == [newer_micropost, older_micropost] # <--- the key line.
+    end
+
+    # Listing 10.15
+    it "should destroy associated microposts" do
+      microposts = @user.microposts.dup # copy array (else just copies reference)
+      @user.destroy
+      microposts.should_not be_empty
+      microposts.each do |micropost|
+        Micropost.find_by_id(micropost.id).should be_nil # find_by_id() returns nil if record not found
+      end
+    end
+
+  end    
+
 
 
 end # User

@@ -15,4 +15,11 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  # Listing 10.12
+  factory :micropost do
+    content "Lorem ipsum"
+    user # tells Factory Girl about micropost's associated user
+  end
+
 end
