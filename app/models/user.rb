@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   # Listing 6.30
   has_secure_password
 
+  # Listing 10.11
+  has_many :microposts
+
   # Listing 6.9 - temporarily commented out in Listings 6.10-11 for "reverse TDD" or something
   # Listing 6.15 - add length validation
   validates :name, presence: true, length: { maximum: 50 }

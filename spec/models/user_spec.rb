@@ -41,6 +41,9 @@ describe User do
   # Listing 9.39
   it { should respond_to :admin }
 
+  # Listing 10.9
+  it { should respond_to :microposts }
+
   # Listing 6.11
   it { should be_valid }
 
