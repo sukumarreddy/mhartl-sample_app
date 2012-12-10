@@ -4,8 +4,15 @@ class StaticPagesController < ApplicationController
 
   def home
 
-    # Listing 10.34 (!) - n.b. ONLY signed in users can view microposts! (remember for testing)
-    @micropost = current_user.microposts.build if signed_in?
+    if signed_in? # one-liner in Listing 10.34
+      
+      # Listing 10.34 (!) - n.b. ONLY signed in users can view microposts! (remember for testing)
+      @micropost = current_user.microposts.build 
+
+      # Listing 10.41
+      @feed_items = current_user.feed.paginate(page: params[:page])
+    end
+
   end
 
   def help

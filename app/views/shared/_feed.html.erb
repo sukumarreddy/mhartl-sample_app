@@ -1,0 +1,7 @@
+<%# Listing 10.42 %>
+<% if @feed_items.any? %>
+  <ol class="microposts">
+    <%= render partial: 'shared/feed_item', collection: @feed_items %> <%# automagically iterates over collection %>
+  </ol>		<%# "partial:" required to add "collection:" to the hash %>
+  <%= will_paginate @feed_items %>
+<% end %>

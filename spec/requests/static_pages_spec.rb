@@ -49,7 +49,24 @@ describe "Static pages" do
     let(:page_title) { '' }
     it_should_behave_like "all static pages"
 
-  end
+    # Listing 10.40
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
+        FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
+        sign_in user
+        visit root_path
+      end
+
+      it "should render the user's feed" do
+        user.feed.each do |item| # assumes each feed item has a unique CSS id
+          page.should have_selector("li##{item.id}", text: item.content) # 1st #: Capybara; 2nd #: Ruby string interpolation
+        end
+      end
+    end
+
+  end # "Home page"
   
   # Listing 3.11
   describe "Help page" do
@@ -77,7 +94,7 @@ describe "Static pages" do
     let(:page_title) { 'Help' }
     it_should_behave_like "all static pages"
 
-  end
+  end # "Help page"
 
   # Listing 3.13
   describe "About page" do
@@ -103,7 +120,7 @@ describe "Static pages" do
     let(:heading) { 'About Us' }
     let(:page_title) { 'About Us' }
     it_should_behave_like "all static pages"
-  end
+  end # "About page"
 
   # Listing 5.16
   describe "Contact page" do
@@ -126,7 +143,7 @@ describe "Static pages" do
     let(:heading) { 'Contact' }
     let(:page_title) { 'Contact' }
     it_should_behave_like "all static pages"
-  end
+  end # "Contact page"
   
   # Listing 5.36 + Exercise 5.2 (integration test)
   it "should have the right links on the layout" do
