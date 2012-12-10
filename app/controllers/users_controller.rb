@@ -83,14 +83,14 @@ class UsersController < ApplicationController
   end
 
 
-  # Listing 9.12
+  # Listing 9.12 - moved to app/helpers/sessions_helper.rb in Listing 10.27
   private
-  def signed_in_user    
-    unless signed_in?
-      store_location # Listing 9.19 - stay on same page after signing in ("friendly forwarding")
-      redirect_to signin_url, notice: "Please sign in." # shortcut for setting flash[:notice]
-    end
-  end
+  #def signed_in_user    
+  #  unless signed_in?
+  #    store_location # Listing 9.19 - stay on same page after signing in ("friendly forwarding")
+  #    redirect_to signin_url, notice: "Please sign in." # shortcut for setting flash[:notice]
+  #  end
+  #end
 
   # Listing 9.15
   def correct_user

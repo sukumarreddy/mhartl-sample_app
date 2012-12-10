@@ -42,4 +42,12 @@ module SessionsHelper
     session[:return_to] = request.url # access raw HTTP request object
   end
 
+  # Listing 10.27 - moved from UserController
+  def signed_in_user    
+    unless signed_in?
+      store_location # Listing 9.19 - stay on same page after signing in ("friendly forwarding")
+      redirect_to signin_url, notice: "Please sign in." # shortcut for setting flash[:notice]
+    end
+  end
+
 end
