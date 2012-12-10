@@ -18,6 +18,10 @@ class UsersController < ApplicationController
   # Listing 7.5
   def show
   	@user = User.find params[:id]
+
+    # Listing 10.22 - with will_paginate stupidity
+    @microposts = @user.microposts.paginate(page: params[:page]) # paginate() works through the association
+
   end
 
   # Listing 7.21

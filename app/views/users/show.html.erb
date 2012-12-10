@@ -11,6 +11,18 @@
       </h1>
     </section>
   </aside>
+
+  <%# Listing 10.20 %>
+  <div class="span8">
+    <% if @user.microposts.any? %> <%# don't display empty list (corner case) %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3> <%# count() through association %>
+      <ol class="microposts">
+        <%= render @microposts %> <%# "defers heavy lifting to a micropost partial" %>
+      </ol>
+      <%= will_paginate @microposts %> <%# pre-emptive pagination (requires controller instance variable) %>
+    <% end %>
+  </div>
+
 </div>
 
 

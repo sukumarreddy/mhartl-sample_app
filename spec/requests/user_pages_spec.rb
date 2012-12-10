@@ -23,10 +23,23 @@ describe "UserPages" do
   # Listing 7.9
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+
+    # Listing 10.19 - with let!() to make association exist immediately
+    let!(:m1) { FactoryGirl.create(:micropost, user:user, content: "Foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user:user, content: "Bar") }
+
     before { visit user_path(user) }
 
     it { should have_selector('h1', text: user.name) }
     it { should have_selector('title', text: user.name) }
+
+    # Listing 10.19 cont.
+    describe "microposts" do
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) } # n.b. count() "through" the association
+    end
+
   end
 
   # Listing 7.16
