@@ -66,11 +66,13 @@ class User < ActiveRecord::Base
 
   # Listing 10.39
   def feed
-    # This is preliminary. See "Following users" for the full implementation.
-    Micropost.where("user_id = ?", id) # ensure "id" is properly escaped before SQL query (prevent SQL injection)
 
+    # Listing 11.42
+    # This is preliminary. See "Following users" for the full implementation.
+    #Micropost.where("user_id = ?", id) # ensure "id" is properly escaped before SQL query (prevent SQL injection)
     # equivalently just use this line (laying foundation for Chapter 11 instead)
     # microposts
+    Micropost.from_users_followed_by(self) # defer hard work to other model...
   end
 
   # Listing 11.12

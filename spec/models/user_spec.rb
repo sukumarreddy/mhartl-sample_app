@@ -224,6 +224,19 @@ describe User do
       its(:feed) { should include(newer_micropost) } # RSpec correctly interprets as array inclusion, not include keyword
       its(:feed) { should include(older_micropost) }
       its(:feed) { should_not include(unfollowed_post) }
+
+      # Listing 11.41
+      let(:followed_user) { FactoryGirl.create(:user) }
+      before do
+        @user.follow!(followed_user)
+        3.times { followed_user.microposts.create!(content: "Lorem ipsum") }
+      end
+      its(:feed) do
+        followed_user.microposts.each do |micropost|
+          should include(micropost)
+        end
+      end
+
     end
 
   end # "micropost associations"
