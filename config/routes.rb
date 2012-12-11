@@ -43,6 +43,9 @@ MhartlSampleApp::Application.routes.draw do
   # Listing 10.24 - need to restart Guard
   resources :microposts, only: [:create, :destroy]
 
+  # Listing 11.24 - restart Guard, I guess.
+  resources :relationships, only: [:create, :destroy]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
