@@ -47,6 +47,9 @@ describe User do
   # Listing 10.38 - status feed
   it { should respond_to :feed }
 
+  # Listing 11.3
+  it { should respond_to :relationships }
+
   # Listing 6.11
   it { should be_valid }
 

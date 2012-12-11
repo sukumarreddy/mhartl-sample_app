@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   # Listing 10.16 adds "dependent: :destroy"
   has_many :microposts, dependent: :destroy
 
+  # Listing 11.4
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+
   # Listing 6.9 - temporarily commented out in Listings 6.10-11 for "reverse TDD" or something
   # Listing 6.15 - add length validation
   validates :name, presence: true, length: { maximum: 50 }

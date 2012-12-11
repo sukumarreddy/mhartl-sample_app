@@ -1,3 +1,9 @@
 class Relationship < ActiveRecord::Base
-  attr_accessible :followed_id, :follower_id
+  # Listing 11.6 - override Rails' auto-generated accessibility
+  #attr_accessible :followed_id, :follower_id
+  attr_accessible :followed_id
+
+  # Listing 11.6
+  belongs_to :follower, class_name: "User" # override Rails' default of Follower
+  belongs_to :followed, class_name: "User" # override Rails' default of Followed
 end
