@@ -64,7 +64,20 @@ describe "Static pages" do
           page.should have_selector("li##{item.id}", text: item.content) # 1st #: Capybara; 2nd #: Ruby string interpolation
         end
       end
-    end
+
+      # Listing 11.19
+      describe "follower/following counts" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          other_user.follow!(user)
+          visit root_path
+        end
+
+        it { should have_link("0 following", href: following_user_path(user)) } # core of this test
+        it { should have_link("1 followers", href: followers_user_path(user)) } # "Followers" label ok, says Grammar Nazi mhartl
+      end
+
+    end # "for signed-in users"
 
   end # "Home page"
   
