@@ -1,5 +1,5 @@
 <%# Exercise 10.5 - pretty much the only one I know how to do... %>
-<span class="content"><%= item.content %></span>
+<span class="content"><%= wrap(item.content) %></span> <%# Exercise 10.6 makes it wrap() %>
 <span class="timestamp">
   Posted <%= time_ago_in_words(item.created_at) %> ago.
 </span>
