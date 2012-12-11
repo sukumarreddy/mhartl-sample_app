@@ -116,6 +116,19 @@ describe "AuthenticationPages" do
         end
       end
 
+      # Listing 11.33
+      describe "in the Relationships controller" do
+        describe "submitting to the create action" do
+          before { post relationships_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete relationship_path(1) } # hard-coded "to avoid the overhead of creating a virtually useless Relationship object"
+          specify { response.should redirect_to(signin_path) }          
+        end
+      end
+
       # Listing 9.17 "friendly forwarding"
       describe "when attempting to visit a protected page" do
         before do
