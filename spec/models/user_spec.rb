@@ -50,6 +50,10 @@ describe User do
   # Listing 11.3
   it { should respond_to :relationships }
 
+  # Listing 11.9
+  it { should respond_to(:relationships) }
+  it { should respond_to(:followed_users) }
+
   # Listing 6.11
   it { should be_valid }
 

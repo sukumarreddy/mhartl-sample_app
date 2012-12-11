@@ -28,6 +28,9 @@ class User < ActiveRecord::Base
   # Listing 11.4
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
 
+  # Listing 11.6 - Rails' default has_many :followed would result in weird-looking "followeds"
+  has_many :followed_users, through: :relationships, source: :followed
+
   # Listing 6.9 - temporarily commented out in Listings 6.10-11 for "reverse TDD" or something
   # Listing 6.15 - add length validation
   validates :name, presence: true, length: { maximum: 50 }
