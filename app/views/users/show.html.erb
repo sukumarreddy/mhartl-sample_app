@@ -10,10 +10,20 @@
       	<%= @user.name %>
       </h1>
     </section>
+
+    <%# Listing 11.27 %>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+
   </aside>
 
   <%# Listing 10.20 %>
   <div class="span8">
+
+    <%# Listing 11.27 %>
+    <%= render 'follow_form' if signed_in? %>
+
     <% if @user.microposts.any? %> <%# don't display empty list (corner case) %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3> <%# count() through association %>
       <ol class="microposts">
