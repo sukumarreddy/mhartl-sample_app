@@ -73,6 +73,11 @@ class User < ActiveRecord::Base
     relationships.create!(followed_id: other_user.id) # equivalently, self.relationships.create!()
   end
 
+  # Listing 11.13
+  def unfollow!(other_user)
+    relationships.find_by_followed_id(other_user.id).destroy
+  end
+
   private
 
   # Listing 8.18

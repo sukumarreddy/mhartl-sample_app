@@ -58,6 +58,9 @@ describe User do
   it { should respond_to(:following?) }
   it { should respond_to(:follow!) }
 
+  # Listing 11.13
+  it { should respond_to :unfollow! }
+
   # Listing 6.11
   it { should be_valid }
 
@@ -231,7 +234,16 @@ describe User do
 
     it { should be_following(other_user) }
     its(:followed_users) { should include(other_user) }
-  end
+
+    # Listing 11.13
+    describe "and unfollowing" do
+      before { @user.unfollow!(other_user) }
+
+      it { should_not be_following(other_user) }
+      its(:followed_users) { should_not include(other_user) }
+    end
+
+  end # "following"
 
 
 
