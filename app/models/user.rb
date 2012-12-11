@@ -31,6 +31,14 @@ class User < ActiveRecord::Base
   # Listing 11.6 - Rails' default has_many :followed would result in weird-looking "followeds"
   has_many :followed_users, through: :relationships, source: :followed
 
+  # Listing 11.16
+  # my biggest complaint about Rails and TDD: how would you know to write this OR its test,
+  # without first being really really familiar with Rails and what it can do??
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship", # otherwise Rails looks for class ReverseRelationship
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower # optional source; retained for symmetry
+
   # Listing 6.9 - temporarily commented out in Listings 6.10-11 for "reverse TDD" or something
   # Listing 6.15 - add length validation
   validates :name, presence: true, length: { maximum: 50 }
