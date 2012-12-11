@@ -65,6 +65,14 @@ class User < ActiveRecord::Base
     # microposts
   end
 
+  # Listing 11.12
+  def following?(other_user)
+    relationships.find_by_followed_id(other_user.id)
+  end
+  def follow!(other_user) # via relationships association
+    relationships.create!(followed_id: other_user.id) # equivalently, self.relationships.create!()
+  end
+
   private
 
   # Listing 8.18
