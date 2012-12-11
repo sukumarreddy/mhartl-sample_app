@@ -5,12 +5,26 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
-    redirect_to @user
+
+    # Listing 11.38
+    #redirect_to @user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js # Rails will automatically load the corresponding .js.erb file
+    end
+
   end
 
   def destroy
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow!(@user)
-    redirect_to @user
+    
+    # Listing 11.38
+    #redirect_to @user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
+
   end
 end
