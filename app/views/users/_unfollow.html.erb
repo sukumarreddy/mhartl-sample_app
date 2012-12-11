@@ -1,5 +1,6 @@
 <%# Listing 11.26 %>
+<%# Listing 11.36 adds "remote: true" %>
 <%= form_for(current_user.relationships.find_by_followed_id(@user),
-             html: { method: :delete }) do |f| %> <%# sends DELETE %>
+             html: { method: :delete }, remote: true) do |f| %> <%# sends DELETE %>
   <%= f.submit "Unfollow", class: "btn btn-large" %> 
 <% end %>
