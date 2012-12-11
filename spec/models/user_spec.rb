@@ -268,6 +268,28 @@ describe User do
 
   end # "following"
 
+  # Exercise 11.1
+  describe "relationship associations" do
+
+    # from "following" tests
+    let(:other_user) { FactoryGirl.create(:user) }
+    before do 
+      @user.save
+      @user.follow!(other_user)
+    end
+    
+
+    # cf. Listing 10.15
+    it "should destroy associated relationships" do
+      relations = @user.relationships.dup # copy array (else just copies reference)
+      relations.should_not be_empty
+      @user.destroy
+      relations.should_not be_empty
+      relations.each do |rel|
+        Relationship.find_by_id(rel.id).should be_nil # find_by_id() returns nil if record not found
+      end
+    end
+  end
 
 
 end # User
