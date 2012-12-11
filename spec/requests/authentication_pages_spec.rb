@@ -90,6 +90,16 @@ describe "AuthenticationPages" do
           it { should have_selector('title', text: 'Sign in') }
         end
 
+        # Listing 11.28 - following/followers pages should require sign-in
+        describe "visiting the following page" do
+          before { visit following_user_path(user) }
+          it { should have_selector('title', text: 'Sign in') }
+        end
+        describe "visiting the followers page" do
+          before { visit followers_user_path(user) }
+          it { should have_selector('title', text: 'Sign in') }
+        end
+
       end
 
       # Listing 10.26

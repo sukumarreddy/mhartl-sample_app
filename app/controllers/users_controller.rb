@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   # Listing 9.12
   # Listing 9.22 - added :index
   # Listing 9.46 - added :delete. CRUD complete!
-  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy]
+  # Listing 11.30 - added :following, :followers
+  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy, :following, :followers]
 
   # Listing 9.15
   before_filter :correct_user, only: [:edit, :update]
@@ -82,6 +83,20 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  # Listing 11.30
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow' # note explicit call to render() - share (NEARLY) identical view with followers()
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
 
   # Listing 9.12 - moved to app/helpers/sessions_helper.rb in Listing 10.27
   private
