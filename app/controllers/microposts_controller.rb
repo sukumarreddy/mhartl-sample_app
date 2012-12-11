@@ -1,6 +1,10 @@
 # Listing 10.28
 class MicropostsController < ApplicationController
-  before_filter :signed_in_user
+  # Listing 10.49 added "only: [:create, :destroy]"
+  before_filter :signed_in_user, only: [:create, :destroy]
+
+  # Listing 10.49
+  before_filter :correct_user, only: :destroy
 
   def create
     # Listing 10.30
@@ -17,5 +21,19 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    # Listing 10.49
+    @micropost.destroy
+    redirect_to root_url
   end
+
+  ############
+  private
+
+  # Listing 10.49
+  def correct_user
+    @micropost = current_user.microposts.find_by_id(params[:id])
+    redirect_to root_url if @micropost.nil?
+  end
+
+
 end

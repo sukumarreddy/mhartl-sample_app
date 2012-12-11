@@ -16,3 +16,6 @@
 
 # Ignore temporary editor files
 *~
+
+# other sqlite files? popped up at end of chapter 10...
+db/*.sqlite*
