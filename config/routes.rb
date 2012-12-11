@@ -26,7 +26,13 @@ MhartlSampleApp::Application.routes.draw do
   match '/signup', to: 'users#new'
 
   # Listing 7.3
-  resources :users
+  # Listing 11.18 nested member/following/followers
+  # resources :users
+  resources :users do
+    member do # alternative: collection - which "works without the id" ? meh
+      get :following, :followers # following_user_path and followers_user_path
+    end
+  end
 
   # Listing 8.2
   resources :sessions, only: [:new, :create, :destroy]
